@@ -26,6 +26,8 @@ class RecipeListFragment: Fragment() {
     ): View {
         return ComposeView(requireContext()).apply{
             setContent {
+
+                val recipe = viewModel.recipe.value
                 Button(onClick = { },
                 modifier = Modifier.background(color = Color.Blue)) {
                     Text(text = "View Recipe")
