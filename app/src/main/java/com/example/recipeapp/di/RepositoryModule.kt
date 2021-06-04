@@ -2,6 +2,7 @@ package com.example.recipeapp.di
 
 import com.example.recipeapp.network.RetrofitService
 import com.example.recipeapp.network.models.RecipeDTOMapper
+import com.example.recipeapp.repository.RecipeRepository
 import com.example.recipeapp.repository.RecipeRepositoryImpl
 import dagger.Module
 import dagger.Provides
@@ -19,7 +20,7 @@ object RepositoryModule {
     fun provideRecipeRepository(
         recipeService: RetrofitService,
         mapper: RecipeDTOMapper
-    ): RecipeRepositoryImpl{
+    ): RecipeRepository {
         return RecipeRepositoryImpl(recipeService, mapper)
     }
 

@@ -20,7 +20,12 @@ class RecipeListViewModel @Inject constructor(
 ) : ViewModel() {
 
     val recipe: MutableState<List<Recipe>> = mutableStateOf(listOf())
+
     init {
+        searchRecipe()
+    }
+
+    private fun searchRecipe(){
         viewModelScope.launch {
             recipe.value = recipeService.searchRecipe(authToken, 1, "chicken")
         }

@@ -4,15 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.background
-import androidx.compose.material.Button
-import androidx.compose.material.Text
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.recipeapp.presentation.components.RecipeCard
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.compose.ui.Modifier
 
 @AndroidEntryPoint
 class RecipeListFragment: Fragment() {
@@ -28,9 +29,17 @@ class RecipeListFragment: Fragment() {
             setContent {
 
                 val recipe = viewModel.recipe.value
-                Button(onClick = { },
-                modifier = Modifier.background(color = Color.Blue)) {
-                    Text(text = "View Recipe")
+
+                LazyColumn(
+                    modifier = Modifier
+                        .padding(
+                            start = 8.dp,
+                            end = 8.dp
+                        )
+                ) {
+                    itemsIndexed(items = recipe){ index, recipe ->
+                        RecipeCard(recipe = recipe, onClick = {})
+                    }
                 }
             }
         }
